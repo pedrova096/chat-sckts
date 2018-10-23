@@ -19,12 +19,9 @@ let broadcast = (sender, message) => {
         client.write(crearMsj(client.name));
     });
 }
-
 net.createServer((socket) => {
-    // console.log(colors.bgGreen("\n\nBienvenido a Pedro's Chat\n"));
     socket.write("\nBienvenido a Pedro's Chat\n");
     socket.isOnName = true;
-    // socket.write('(~‾▿‾)~ Nombre > ');
     socket.write(crearMsj('Nombre'));
     socket.on('data', (data) => {
         let mensaje = data.toString().trim();
@@ -58,9 +55,6 @@ net.createServer((socket) => {
     socket.on('close', () => {
         clients = clients.filter(c => c != socket);
         broadcast({ name: 'Administrador' }, `${socket.name} ha salido del chat`);
-    });
-    socket.on('error', (err) => {
-        console.log('socket', err);
     });
 }).on('error', (err) => {
     console.log(err);
