@@ -1,5 +1,4 @@
 const net = require('net');
-const colors = require('colors');
 const port = process.env.PORT || 3000;
 let clients = [];
 
@@ -20,6 +19,7 @@ let broadcast = (sender, message) => {
         client.write(crearMsj(client.name));
     });
 }
+
 net.createServer((socket) => {
     // console.log(colors.bgGreen("\n\nBienvenido a Pedro's Chat\n"));
     socket.write("\nBienvenido a Pedro's Chat\n");
