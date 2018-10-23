@@ -56,10 +56,11 @@ net.createServer((socket) => {
         clients = clients.filter(c => c != socket);
         broadcast({ name: 'Administrador' }, `${socket.name} ha salido del chat`);
     });
-    socket.on('error', () => {
+    socket.on('error', (err) => {
         clients = clients.filter(c => c != socket);
+        console.log('DAÑO SOCKET', err);
     });
 }).on('error', (err) => {
-    console.log(err);
+    console.log('DAÑO SERVER', err);
 }).listen(port);
 console.log(`server corriendo, puerto: ${port}`);
